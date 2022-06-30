@@ -16,9 +16,9 @@ So far, I haven't had much trouble with getting the Proxmox Provider to work. I 
 2. Set your environmental variables for Proxmox listed above. I am using pass to store them safely on a this deployment box. Main advice. Don't put into plaintext, especially in git!
 
 ```bash
+export PM_API_URL=$(pass list proxmox/api-url)
 export PM_API_TOKEN_ID=$(pass list proxmox/terraform-prov/full-tokenid)
 export PM_API_TOKEN_SECRET=$(pass list proxmox/terraform-prov/api-token)
-export PM_API_TOKEN_ID=$(pass list proxmox/terraform-prov/full-tokenid)
 ```
 
 3. Make sure you have existing `cloud-init` files as listed in custom, or customize to suit
