@@ -2,11 +2,11 @@
 
 This repository contains some examples for using Terraform in my Proxmox environment. Therer are several assumptions made:
 
-1. PM_API_URL is set in environment
-2. PM_API_TOKEN_ID is set in environment
-3. PM_API_TOKEN_SECRET is set in environment
+1. `PM_API_URL` is set in environment
+2. `PM_API_TOKEN_ID` is set in environment
+3. `PM_API_TOKEN_SECRET` is set in environment
 4. Templates for the various OSs are setup under the names I have used
-5. Currently using cicustom to point at existing snippets in my storage. I will be getting the template in place to render on the fly and place in my snippets.
+5. Currently using `cicustom` to point at existing snippets in my storage. I will be getting the templates in place to render on the fly and place in my snippets.
 
 So far, I haven't had much trouble with getting the Proxmox Provider to work. I had to update some code from the examples in the Terraform Registry due to some things becoming deprecated, but it mostly worked without issue.
 
