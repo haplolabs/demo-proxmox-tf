@@ -1,6 +1,6 @@
 /* Configure Cloud-Init User-Data with custom config file */
 resource "proxmox_vm_qemu" "cloudinit-test" {
-  name        = "jammy-test-1.haplolabs.io"
+  name        = "jammy-test-1.${var.domain_name}"
   desc        = "Test Ubuntu 22.04"
   target_node = "pve"
 
@@ -47,7 +47,7 @@ resource "proxmox_vm_qemu" "cloudinit-test" {
 
 }
 resource "proxmox_vm_qemu" "fedora36-test" {
-  name        = "fedora-test-1.haplolabs.io"
+  name        = "fedora-test-1.${var.domain_name}"
   desc        = "Test Fedora 36"
   target_node = "pve3"
 
@@ -94,7 +94,12 @@ resource "proxmox_vm_qemu" "fedora36-test" {
 }
 
 resource "proxmox_vm_qemu" "arch-test" {
-  name        = "arch-test-1.haplolabs.io"
+  depends_on = [
+    null_resource.cloud_init_config_files,
+  ]
+
+  count       = var.vm_count
+  name        = "arch-test-${count.index}.${var.domain_name}"
   desc        = "Test Arch Linux"
   target_node = "pve2"
 
@@ -106,7 +111,7 @@ resource "proxmox_vm_qemu" "arch-test" {
   sockets = 1
   memory  = 2048
 
-  ssh_user        = "serveradmin"
+  ssh_user        = var.ansible_user
 
   os_type   = "cloud-init"
   /* ipconfig0 = "ip=192.168.103.45/24,gw=192.168.103.1" */
@@ -116,7 +121,7 @@ resource "proxmox_vm_qemu" "arch-test" {
     In this example each VM has its own config file, previously generated and uploaded to
     the snippets folder in the local storage in the Proxmox VE server.
   */
-  cicustom                = "user=backups:snippets/arch-test-1-user.yaml,network=backups:snippets/arch-test-1-network.yaml"
+  cicustom                = "user=backups:snippets/arch-test-${count.index}-user.yaml,network=backups:snippets/arch-test-${count.index}-network.yaml"
   /* Create the Cloud-Init drive on the "local-lvm" storage */
   cloudinit_cdrom_storage = "backups"
 
