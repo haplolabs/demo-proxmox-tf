@@ -3,6 +3,26 @@ variable "vm_count" {
   type = number
 }
 
+variable "access_key" {
+  description = "Access key to access state bucket"
+  type = string
+}
+
+variable "secret_key" {
+  description = "Secret key to access state bucket"
+  type = string
+}
+
+variable "s3_endpoint" {
+  description = "s3 API endpoint"
+  type = string
+}
+
+variable "state_region" {
+  description = "Region where state bucket resides"
+  type = string
+}
+
 variable "domain_name" {
   description = "VM Domain name"
   type = string
