@@ -16,6 +16,7 @@ resource "proxmox_vm_qemu" "cloudinit-test" {
   ssh_user        = "serveradmin"
 
   os_type   = "cloud-init"
+  qemu_os   = "l26"
   ipconfig0 = "ip=192.168.103.45/24,gw=192.168.103.1"
 
   /*
@@ -65,6 +66,7 @@ resource "proxmox_vm_qemu" "fedora36-test" {
   ssh_user        = "serveradmin"
 
   os_type   = "cloud-init"
+  qemu_os   = "l26"
   /* ipconfig0 = "ip=192.168.103.45/24,gw=192.168.103.1" */
 
   /*
@@ -118,6 +120,7 @@ resource "proxmox_vm_qemu" "arch-test" {
   ssh_user        = var.ansible_user
 
   os_type   = "cloud-init"
+  qemu_os   = "l26"
   /* ipconfig0 = "ip=192.168.103.45/24,gw=192.168.103.1" */
 
   /*
