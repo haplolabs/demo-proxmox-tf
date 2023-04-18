@@ -11,6 +11,7 @@ resource "proxmox_vm_qemu" "cloudinit-test" {
   cores   = 1
   sockets = 1
   memory  = 2048
+  scsihw  = "virtio-scsi-pci"
 
   ssh_user        = "serveradmin"
 
@@ -31,7 +32,7 @@ resource "proxmox_vm_qemu" "cloudinit-test" {
     size    = "20G"
     storage = "backups"
     format  = "raw"
-    backup  = 1
+    backup  = true
   }
 
   network {
@@ -58,6 +59,8 @@ resource "proxmox_vm_qemu" "fedora36-test" {
   cores   = 1
   sockets = 1
   memory  = 2048
+  scsihw  = "virtio-scsi-pci"
+
 
   ssh_user        = "serveradmin"
 
@@ -77,7 +80,7 @@ resource "proxmox_vm_qemu" "fedora36-test" {
     type    = "scsi"
     size    = "20G"
     storage = "backups"
-    backup  = 1
+    backup  = true
   }
 
   network {
@@ -110,6 +113,7 @@ resource "proxmox_vm_qemu" "arch-test" {
   cores   = 1
   sockets = 1
   memory  = 2048
+  scsihw  = "virtio-scsi-pci"
 
   ssh_user        = var.ansible_user
 
@@ -129,7 +133,7 @@ resource "proxmox_vm_qemu" "arch-test" {
     type    = "scsi"
     size    = "10G"
     storage = "backups"
-    backup  = 1
+    backup  = true
   }
 
   network {
